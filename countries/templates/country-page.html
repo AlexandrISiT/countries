@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Языки в стране {{country}}</title>
+    <link rel="stylesheet" href="{% static 'MainApp/css/style.css' %}">
+</head>
+<body>
+    <div class="site">
+        <div class="site__top">
+            <header class="header">
+                <div class="cont">
+                    <div class="header__cont">
+                        <div class="header__logo">
+                            <span>Бирюков</span>
+                            <span>Александр</span>
+                            <span>Егорович</span>
+                        </div>
+                        <div class="header__nav">
+                            <a href="/" class="header__link">Главная</a>
+                            <a href="/country-list/" class="header__link">СПИСОК СТРАН</a>
+                            <a href="/language-list/" class="header__link">СПИСОК ЯЗЫКОВ</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="site__content">
+                <div class="cont">
+                    <div class="site__title">
+                        <h1>Языки в стране {{country}}</h1>
+                    </div>
+                    <div class="site__main">
+                        <ul>
+                            {% for language in languages%}
+                                <li><a href="/language-page/{{language}}"> {{language}} </a></li>
+                            {%endfor%}
+                        </ul>
+
+                        <a class="btn" href="/country-list/">НАЗАД К СПИСКУ СТРАН</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="site__bottom">
+            <footer class="footer">
+                <div class="cont">
+                    <div class="footer__cont">
+                        <div class="footer__copyright">
+                            © Бирюков Александр Егорович ИСиТ 1-1б (Copyright 2022)
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

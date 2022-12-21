@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список языков</title>
+    <link rel="stylesheet" href="{% static 'MainApp/css/style.css' %}">
+</head>
+<body>
+    <div class="site">
+        <div class="site__top">
+            <header class="header">
+                <div class="cont">
+                    <div class="header__cont">
+                        <div class="header__logo">
+                            <span>Бирюков</span>
+                            <span>Александр</span>
+                            <span>Егорович</span>
+                        </div>
+                        <div class="header__nav">
+                            <a href="/" class="header__link">Главная</a>
+                            <a href="/country-list/" class="header__link">СПИСОК СТРАН</a>
+                            <a href="/language-list/" class="header__link">СПИСОК ЯЗЫКОВ</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="site__content">
+                <div class="cont">
+                    <div class="site__title">
+                        <h1>Список языков</h1>
+                    </div>
+                    <div class="site__main">
+                        <h2>Отсортировать по букве:</h2>
+                        <div class="lang-sort">
+                            {%for letter in letters%}
+                            <a class="lang-sort__link" href="/languages-list-letter/{{letter}}">{{ letter }}</a>
+                        {%endfor%}
+                        </div>
+                        <ol>
+                            {%for language in languages%}
+                                <li><a href="/language-page/{{language}}">{{ language }}</a></li>
+                            {%endfor%}
+                        </ol>
+
+                        <a class="btn" href="/">Главная страница</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="site__bottom">
+            <footer class="footer">
+                <div class="cont">
+                    <div class="footer__cont">
+                        <div class="footer__copyright">
+                            © Бирюков Александр Егорович ИСиТ 1-1б (Copyright 2022)
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

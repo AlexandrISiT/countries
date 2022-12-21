@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список стран</title>
+    <link rel="stylesheet" href="{% static 'MainApp/css/style.css' %}">
+</head>
+<body>
+    <div class="site">
+        <div class="site__top">
+            <header class="header">
+                <div class="cont">
+                    <div class="header__cont">
+                        <div class="header__logo">
+                            <span>Бирюков</span>
+                            <span>Александр</span>
+                            <span>Егорович</span>
+                        </div>
+                        <div class="header__nav">
+                            <a href="/" class="header__link">Главная</a>
+                            <a href="/country-list/" class="header__link">СПИСОК СТРАН</a>
+                            <a href="/language-list/" class="header__link">СПИСОК ЯЗЫКОВ</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="site__content">
+                <div class="cont">
+                    <div class="site__title">
+                        <h1>Список стран</h1>
+                    </div>
+                    <div class="site__main">
+                        <h2>Отсортировать по букве:</h2>
+                        <div class="lang-sort">
+                            {%for letter in letters%}
+                            <a class="lang-sort__link" href="/country-list-letter/{{letter}}">{{ letter }}</a>
+                        {%endfor%}
+                        </div>
+                        <ol>
+                            {% for country in page_obj %}
+                                <li><a href="/country-page/{{country}}">{{ country }}</a></li>
+                            {% endfor %}
+                        </ol>
+                        <div class="pagination">
+                            {% if page_obj.has_previous %}
+                                {% if page_obj.previous_page_number == 1 %}
+                                <a class="pagination__link pagination__first" href="?page=1">1</a>
+                                {% else %}
+                                    <a class="pagination__link pagination__first" href="?page=1">1</a>
+                                    <a class="pagination__link pagination__prev" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                                {% endif %}
+                            {% endif %}
+
+                            <span class="pagination__current">
+                                Станица {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+                            </span>
+
+                            {% if page_obj.has_next %}
+                                {% if page_obj.next_page_number != page_obj.paginator.num_pages %}
+                                    <a class="pagination__link pagination__next" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                                    <a class="pagination__link pagination__last" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+                                {% else %}
+                                    <a class="pagination__link pagination__last" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+
+                        <a class="btn" href="/">Главная страница</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="site__bottom">
+            <footer class="footer">
+                <div class="cont">
+                    <div class="footer__cont">
+                        <div class="footer__copyright">
+                            © Бирюков Александр Егорович ИСиТ 1-1б (Copyright 2022)
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
